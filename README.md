@@ -38,3 +38,5 @@ Con el metodo 'listen' de mi aplicacion, abro un nodo. Le paso el puerto y un ca
 
 Creo el middleware logging.js para loggear la ruta y el metodo de cada requese y lo exporto. Lo importo en el index y lo exporto. Lo importo en app.js y con el metodo 'use' de mi aplicacion, le digo que utilice ese middleware en cada request.
 
+Creo los modelos con sus atributos e incluyo un deleted para el borrado logico. Relaciono los modelos Book y Library. Exporto los tres modelos y en el index los importo y exporto.
+
