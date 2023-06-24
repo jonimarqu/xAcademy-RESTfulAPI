@@ -3,4 +3,4 @@ const userRouter = express.Router();
 
 // userRouter.post();
 
-module.exports = userRouter;
+module.exports = { userRouter };
