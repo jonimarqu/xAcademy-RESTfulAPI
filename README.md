@@ -52,3 +52,6 @@ Creo el middleware logging.js para loggear la ruta y el metodo de cada requese y
 Creo los modelos con sus atributos e incluyo un deleted para el borrado logico. Relaciono los modelos Book y Library. Exporto los tres modelos y en el index los importo y exporto.
 
 Usando la clase Router de express, creo las estructuras de ruta para los modelos y las exporto. Las importo al index y exporto. En mi aplicacion traigo esas rutas y con el metodo 'use', las aplico.
+
+Creo la estructura de controllers de Book y Library, y los exporto. Los importo en index y exporto. Importo y utilizo estas estructuras en sus rutas.
+
