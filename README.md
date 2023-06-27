@@ -58,3 +58,6 @@ Creo la estructura de controllers de Book y Library, y los exporto. Los importo 
 En los modelos, paso la definicion de las relaciones al index.
 Creo la carpeta para la bd y actualizo el db-config y el gitignore.
 En mi aplicacion, agrego el middleware nativo de express que parsea los requests.
+
+Creo la estructura de los services de Book y Library, y los exporto. Los importo en index y exporto. Importo y utilizo estas estructuras en sus controllers.
+

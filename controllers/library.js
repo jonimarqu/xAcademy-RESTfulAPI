@@ -1,26 +1,48 @@
-const createLibrary = (req, res) => {
-  console.log("Creates library");
-  res.end();
+const { libraryService } = require("../services");
+
+const createLibrary = async (req, res) => {
+  try {
+    const newLibrary = await libraryService.createLibrary(req.body);
+    res.json(newLibrary);
+  } catch (err) {
+    res.status(500).json({ action: "createLibrary", error: err.messae });
+  }
 };
 
-const getLibrary = (req, res) => {
-  console.log("Gets library and its books");
-  res.end();
+const getLibrary = async (req, res) => {
+  try {
+    const library = await libraryService.getLibrary(req.params.libraryId);
+    res.json(library);
+  } catch (err) {
+    res.status(500).json({ action: "getLibrary", error: err.messae });
+  }
 };
 
-const getLibraries = (req, res) => {
-  console.log("Gets all libraries with their books");
-  res.end();
+const getLibraries = async (req, res) => {
+  try {
+    const libraries = await libraryService.getLibraries(req.body);
+    res.json(libraries);
+  } catch (err) {
+    res.status(500).json({ action: "getLibraries", error: err.messae });
+  }
 };
 
-const updateLibrary = (req, res) => {
-  console.log("Updates library");
-  res.end();
+const updateLibrary = async (req, res) => {
+  try {
+    const updatedibrary = await libraryService.updateLibrary(req.params.libraryId);
+    res.json(updatedibrary);
+  } catch (err) {
+    res.status(500).json({ action: "updateLibrary", error: err.messae });
+  }
 };
 
-const deleteLibrary = (req, res) => {
-  console.log("Marks library as deleted");
-  res.end();
+const deleteLibrary = async (req, res) => {
+  try {
+    const deletedLibrary = await libraryService.deleteLibrary(req.params.libraryId);
+    res.json(deletedLibrary);
+  } catch (err) {
+    res.status(500).json({ action: "deleteLibrary", error: err.messae });
+  }
 };
 
 module.exports = {

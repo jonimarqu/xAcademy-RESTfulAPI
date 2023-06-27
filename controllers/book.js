@@ -1,26 +1,48 @@
-const createBook = (req, res) => {
-  console.log("Creates Book");
-  res.end();
+const { bookService } = require("../services");
+
+const createBook = async (req, res) => {
+  try {
+    const newBook = await bookService.createBook(req.body, req.params.libraryId);
+    res.json(newBook);
+  } catch (err) {
+    res.status(500).json({ action: "createBook", error: err.messae });
+  }
 };
 
-const getBook = (req, res) => {
-  console.log("Gets the book");
-  res.end();
+const getBook = async (req, res) => {
+  try {
+    const book = await bookService.getBook(req.params.bookId);
+    res.json(book);
+  } catch (err) {
+    res.status(500).json({ action: "getBook", error: err.messae });
+  }
 };
 
-const getBooks = (req, res) => {
-  console.log("Gets all books");
-  res.end();
+const getBooks = async (req, res) => {
+  try {
+    const books = await bookService.getBooks(req.body);
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ action: "getBooks", error: err.messae });
+  }
 };
 
-const updateBook = (req, res) => {
-  console.log("Updates Book");
-  res.end();
+const updateBook = async (req, res) => {
+  try {
+    const updatedBook = await bookService.updateBook(req.params.bookId);
+    res.json(updatedBook);
+  } catch (err) {
+    res.status(500).json({ action: "updateBook", error: err.messae });
+  }
 };
 
-const deleteBook = (req, res) => {
-  console.log("Marks Book as deleted");
-  res.end();
+const deleteBook = async (req, res) => {
+  try {
+    const deletedBook = await bookService.deleteBook(req.params.bookId);
+    res.json(deletedBook);
+  } catch (err) {
+    res.status(500).json({ action: "deleteBook", error: err.messae });
+  }
 };
 
 module.exports = {
