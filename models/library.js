@@ -1,6 +1,5 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/db-config');
-const Book = require('./book');
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../config/db-config");
 
 const Library = sequelize.define("Libraries", {
   id: {
@@ -27,6 +26,4 @@ const Library = sequelize.define("Libraries", {
   },
 });
 
-Library.hasMany(Book, { foreignKey: { allowNull: true }, onDelete: 'SET NULL', optional: true });
-
-module.exports = Library;
+module.exports = { Library };

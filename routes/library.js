@@ -4,7 +4,7 @@ const express = require("express");
 const libraryRouter = express.Router();
 
 libraryRouter.post("/new", libraryController.createLibrary);
-libraryRouter.post("/:libraryId/book", bookController.createBook);
+libraryRouter.post("/:libraryId/newbook", bookController.createBook);
 libraryRouter.get("/", libraryController.getLibraries);
 libraryRouter.get("/:libraryId", libraryController.getLibrary);
 libraryRouter.put("/:libraryId", libraryController.updateLibrary);

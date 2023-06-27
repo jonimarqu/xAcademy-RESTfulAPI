@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize"); // take the Sequelize Class
 // make a unique instance of the class
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: "./database.sqlite",
+  storage: "./db/database.sqlite",
 });
 
 const initializeDB = async () => {

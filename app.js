@@ -4,8 +4,9 @@ const { loggingMdw } = require("./middleware");
 const { bookRouter, libraryRouter, userRouter } = require("./routes");
 
 const app = express();
-const PORT = 9000;
+const PORT = 9000; // process.env.PORT || 9000
 
+app.use(express.json());
 app.use(loggingMdw);
 app.use("/book", bookRouter);
 app.use("/library", libraryRouter);
