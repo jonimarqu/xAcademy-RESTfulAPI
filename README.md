@@ -26,13 +26,13 @@ ARQUITECTURA
 
 Creo las carpetas en las que voy a organizar el codigo, para que sea escalable y sencillo de leer y mantener:
 
-/Controllers/ -> Manejan la finalidad de cada solicitud.
+/Controllers/ -> Manejan la finalidad de cada solicitud - el request y la response.
 
 /Middleware/ -> Funciones intermediarias que se ejecutan entre la request y la response, y pueden procesar o modificar la request antes de que llegue al controller.
 
 /Models/ -> Modelo de los datos.
 
-/Providers/ -> Como acceder a los modelos.
+/Providers/ -> Manejan el acceso a los modelos.
 
 /Routes/ -> Se direcciona la logica de cada solicitud segun su ruta.
 
@@ -60,4 +60,8 @@ Creo la carpeta para la bd y actualizo el db-config y el gitignore.
 En mi aplicacion, agrego el middleware nativo de express que parsea los requests.
 
 Creo la estructura de los services de Book y Library, y los exporto. Los importo en index y exporto. Importo y utilizo estas estructuras en sus controllers.
+
+Planteo el uso de los providers. Creo la estructura de los providers de Book y Library, y los exporto. Los importo en index y exporto. En los modelos, quito el atributo deleted y uso la opción 'paranoid' para la soft deletion.
+
+Creo la logica de los providers para los accesos al modelo Book. Y queda funcionando ok.
 
