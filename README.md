@@ -65,3 +65,5 @@ Planteo el uso de los providers. Creo la estructura de los providers de Book y L
 
 Creo la logica de los providers para los accesos al modelo Book. Y queda funcionando ok.
 
+Creo la logica de los providers para los accesos al modelo Library. Queda funcionando ok.
+

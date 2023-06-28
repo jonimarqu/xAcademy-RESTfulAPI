@@ -15,14 +15,14 @@ const getLibraries = async (library) => {
   return libraries;
 };
 
-const updateLibrary = async (libraryId) => {
-  const updatedBook = await libraryProvider.updateLibrary(libraryId);
+const updateLibrary = async (libraryId, updates) => {
+  const updatedBook = await libraryProvider.updateLibrary(libraryId, updates);
   return updatedBook;
 };
 
 const deleteLibrary = async (libraryId) => {
   const deletedBook = await libraryProvider.deleteLibrary(libraryId);
-  return deletedBook;
+  return;
 };
 
 module.exports = {

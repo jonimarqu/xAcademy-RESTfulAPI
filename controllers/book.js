@@ -23,7 +23,7 @@ const getBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await bookService.getAllBooks(req.body);
+    const books = await bookService.getAllBooks();
     res.json(books);
   } catch (err) {
     res.status(500).json({ action: "getBooks", error: err.messae });

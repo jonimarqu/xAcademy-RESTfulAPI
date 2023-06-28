@@ -29,8 +29,11 @@ const getLibraries = async (req, res) => {
 
 const updateLibrary = async (req, res) => {
   try {
-    const updatedibrary = await libraryService.updateLibrary(req.params.libraryId);
-    res.json(updatedibrary);
+    const updatedLibrary = await libraryService.updateLibrary(
+      req.params.libraryId,
+      req.body
+    );
+    res.json(updatedLibrary);
   } catch (err) {
     res.status(500).json({ action: "updateLibrary", error: err.messae });
   }
@@ -38,8 +41,8 @@ const updateLibrary = async (req, res) => {
 
 const deleteLibrary = async (req, res) => {
   try {
-    const deletedLibrary = await libraryService.deleteLibrary(req.params.libraryId);
-    res.json(deletedLibrary);
+    await libraryService.deleteLibrary(req.params.libraryId);
+    res.status(204).end();
   } catch (err) {
     res.status(500).json({ action: "deleteLibrary", error: err.messae });
   }
