@@ -1,4 +1,4 @@
-const { Book, Library, User } = require("../models");
+const { Library } = require("../models");
 
 const createLibrary = async (library) => {
   const newLibrary = await Library.create(library);
@@ -6,12 +6,24 @@ const createLibrary = async (library) => {
 };
 
 const getLibrary = async (libraryId) => {
-  const library = await Library.findByPk(libraryId);
+  const library = await Library.findByPk(libraryId, {
+    attributes: ["id", "name", "location", "phone"],
+    include: {
+      all: true,
+      attributes: ["id", "isbn", "title", "author", "year"],
+    },
+  });
   return library;
 };
 
 const getLibraries = async () => {
-  const libraries = await Library.findAll(this);
+  const libraries = await Library.findAll({
+    attributes: ["id", "name", "location", "phone"],
+    include: {
+      all: true,
+      attributes: ["id", "isbn", "title", "author", "year"],
+    },
+  });
   return libraries;
 };
 
