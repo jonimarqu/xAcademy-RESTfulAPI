@@ -21,7 +21,7 @@ const updateLibrary = async (libraryId, updates) => {
 };
 
 const deleteLibrary = async (libraryId) => {
-  const deletedBook = await libraryProvider.deleteLibrary(libraryId);
+  await libraryProvider.deleteLibrary(libraryId);
   return;
 };
 

@@ -22,4 +22,25 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getUser };
+const updateUser = async (req, res) => {
+  try {
+    const updatedUser = await userService.updateUser(
+      req.params.userId,
+      req.body
+    );
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ action: "updateUser", error: err.message });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    await userService.deleteUser(req.params.userId);
+    res.status(204).end();
+  } catch (err) {
+    res.statuss(500).json({ action: "deleteUser", error: err.message });
+  }
+};
+
+module.exports = { createUser, getUser, updateUser, deleteUser };

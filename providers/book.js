@@ -16,30 +16,50 @@ const createBook = async (book, libraryId) => {
 };
 
 const getBook = async (bookId) => {
-  const book = await Book.findByPk(bookId, {
-    attributes: ["id", "isbn", "title", "author", "year"],
-    include: { all: true, attributes: ["id", "name", "location", "phone"] },
-  });
-  return book;
+  try {
+    const book = await Book.findByPk(bookId, {
+      attributes: ["id", "isbn", "title", "author", "year"],
+      include: { all: true, attributes: ["id", "name", "location", "phone"] },
+    });
+    return book;
+  } catch (err) {
+    console.error("Error getting Book.", err);
+    throw err;
+  }
 };
 
 const getAllBooks = async () => {
-  const books = await Book.findAll({
-    attributes: ["id", "isbn", "title", "author", "year"],
-    include: { all: true, attributes: ["id", "name", "location", "phone"] },
-  });
-  return books;
+  try {
+    const books = await Book.findAll({
+      attributes: ["id", "isbn", "title", "author", "year"],
+      include: { all: true, attributes: ["id", "name", "location", "phone"] },
+    });
+    return books;
+  } catch (err) {
+    console.error("Error getting all Books.", err);
+    throw err;
+  }
 };
 
 const updateBook = async (bookId, updates) => {
-  await Book.update({ ...updates }, { where: { id: bookId } });
-  const updatedBook = await Book.findByPk(bookId);
-  return updatedBook;
+  try {
+    await Book.update({ ...updates }, { where: { id: bookId } });
+    const updatedBook = await Book.findByPk(bookId);
+    return updatedBook;
+  } catch (err) {
+    console.error("Error updating Book.", err);
+    throw err;
+  }
 };
 
 const deleteBook = async (bookId) => {
-  await Book.destroy({ where: { id: bookId } });
-  return;
+  try {
+    await Book.destroy({ where: { id: bookId } });
+    return;
+  } catch (err) {
+    console.error("Error deleting Book.", err);
+    throw err;
+  }
 };
 
 module.exports = {

@@ -5,12 +5,27 @@ const createUser = async (user) => {
   return newUser;
 };
 
+const createFirstAdmin = async () => {
+  const newAdmin = await userProvider.createFirstAdmin();
+  return newAdmin;
+};
+
 const getUser = async (userId) => {
   const user = await userProvider.getUser(userId);
   if (user) {
-    //logica de negocio
+    return user;
   }
-  return user;
+  return null;
 };
 
-module.exports = { createUser, getUser };
+const updateUser = async (userId, updates) => {
+  const updatedUser = await userProvider.updateUser(userId, updates);
+  return updatedUser;
+};
+
+const deleteUser = async (userId) => {
+  await userProvider.deleteUser(userId);
+  return;
+};
+
+module.exports = { createUser, getUser, updateUser, deleteUser, createFirstAdmin };
