@@ -23,9 +23,34 @@ const updateUser = async (userId, updates) => {
   return updatedUser;
 };
 
+/**
+ * Delete user if userId != 1 (first Admin)
+ * Should be improved to delete user if User is not last admin in DB.
+ */
 const deleteUser = async (userId) => {
-  await userProvider.deleteUser(userId);
-  return;
+  if (userId == 1) {
+    return 403;
+  } else {
+    const user = await userProvider.getUser(userId);
+    if (user) {
+      await userProvider.deleteUser(userId);
+      return true;
+    } else {
+      return false;
+    }
+  }
 };
 
-module.exports = { createUser, getUser, updateUser, deleteUser, createFirstAdmin };
+const validateUser = async (data) => {
+  const user = await userProvider.validateUser(data);
+  return user;
+};
+
+module.exports = {
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  createFirstAdmin,
+  validateUser,
+};

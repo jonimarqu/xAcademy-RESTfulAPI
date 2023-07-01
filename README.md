@@ -67,3 +67,4 @@ Creo la logica de los providers para los accesos al modelo Book. Y queda funcion
 
 Creo la logica de los providers para los accesos al modelo Library. Queda funcionando ok.
 
+Creo el middleware para authentication con passport y passport-jwt.

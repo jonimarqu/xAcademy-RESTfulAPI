@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { Op } = require("sequelize");
 
 const createUser = async (user) => {
   try {
@@ -39,6 +40,15 @@ const getUser = async (userId) => {
   }
 };
 
+const getUsersByCriteria = async (options) => {
+  try {
+    const users = await User.findAll({ where: options });
+    return users;
+  } catch (err) {
+    console.error("Internal Error", err);
+  }
+};
+
 const updateUser = async (userId, updates) => {
   try {
     await User.update({ ...updates }, { where: { id: userId } });
@@ -61,10 +71,26 @@ const deleteUser = async (userId) => {
   }
 };
 
+const validateUser = async (options) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        [Op.and]: [{ name: options.name }, { password: options.password }],
+      },
+    });
+    return user;
+  } catch (err) {
+    console.error("Error when validating User.", err);
+    return false;
+  }
+};
+
 module.exports = {
   createUser,
   createFirstAdmin,
   getUser,
   updateUser,
   deleteUser,
+  getUsersByCriteria,
+  validateUser,
 };

@@ -6,27 +6,37 @@ const createBook = async (req, res) => {
       req.body,
       req.params.libraryId
     );
-    res.json(newBook);
+    res.status(201).json(newBook);
   } catch (err) {
-    res.status(500).json({ action: "createBook", error: err.messae });
+    res.status(500).json({ action: "createBook", error: err.message });
   }
 };
 
 const getBook = async (req, res) => {
   try {
     const book = await bookService.getBook(req.params.bookId);
-    res.json(book);
+    if (!book) {
+      res.status(404).json({ action: "getBook", error: "Book not found." });
+    } else {
+      res.json(book);
+    }
   } catch (err) {
-    res.status(500).json({ action: "getBook", error: err.messae });
+    res.status(500).json({ action: "getBook", error: err.message });
   }
 };
 
 const getAllBooks = async (req, res) => {
   try {
     const books = await bookService.getAllBooks();
-    res.json(books);
+    if (!books) {
+      res
+        .status(404)
+        .json({ action: "getAllBooks", error: "Books not found." });
+    } else {
+      res.json(books);
+    }
   } catch (err) {
-    res.status(500).json({ action: "getBooks", error: err.messae });
+    res.status(500).json({ action: "getBooks", error: err.message });
   }
 };
 
@@ -38,7 +48,7 @@ const updateBook = async (req, res) => {
     );
     res.json(updatedBook);
   } catch (err) {
-    res.status(500).json({ action: "updateBook", error: err.messae });
+    res.status(500).json({ action: "updateBook", error: err.message });
   }
 };
 
@@ -47,7 +57,7 @@ const deleteBook = async (req, res) => {
     await bookService.deleteBook(req.params.bookId);
     res.status(204).end();
   } catch (err) {
-    res.status(500).json({ action: "deleteBook", error: err.messae });
+    res.status(500).json({ action: "deleteBook", error: err.message });
   }
 };
 

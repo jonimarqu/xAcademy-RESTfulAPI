@@ -7,12 +7,20 @@ const createBook = async (book, libraryId) => {
 
 const getBook = async (bookId) => {
   const book = await bookProvider.getBook(bookId);
-  return book;
+  if (book) {
+    return book;
+  } else {
+    return null;
+  }
 };
 
 const getAllBooks = async () => {
   const books = await bookProvider.getAllBooks();
-  return books;
+  if (books) {
+    return books;
+  } else {
+    return null;
+  }
 };
 
 const updateBook = async (bookId, updates) => {
