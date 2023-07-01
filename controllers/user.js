@@ -3,7 +3,7 @@ const { userService } = require("../services");
 const createUser = async (req, res) => {
   try {
     const newUser = await userService.createUser(req.body);
-    res.json(newUser);
+    res.status(201).json(newUser);
   } catch (err) {
     res.status(500).json({ action: "createUser", error: err.message });
   }
@@ -24,10 +24,7 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const updatedUser = await userService.updateUser(
-      req.params.userId,
-      req.body
-    );
+    const updatedUser = await userService.updateUser(req.params.userId, req.body);
     res.json(updatedUser);
   } catch (err) {
     res.status(500).json({ action: "updateUser", error: err.message });
@@ -36,10 +33,17 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    await userService.deleteUser(req.params.userId);
-    res.status(204).end();
+    const deleted = await userService.deleteUser(req.params.userId);
+    console.log(deleted)
+    if (deleted === 403) {
+      res.status(403).end();
+    } else if (deleted) {
+      res.status(204).end();
+    } else {
+      res.status(404).json({ action: "deleteUser", error: "User not found" });
+    }
   } catch (err) {
-    res.statuss(500).json({ action: "deleteUser", error: err.message });
+    res.status(500).json({ action: "deleteUser", error: err.message });
   }
 };
 

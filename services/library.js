@@ -7,12 +7,20 @@ const createLibrary = async (library) => {
 
 const getLibrary = async (libraryId) => {
   const library = await libraryProvider.getLibrary(libraryId);
-  return library;
+  if (library) {
+    return library;
+  } else {
+    return null;
+  }
 };
 
 const getLibraries = async (library) => {
   const libraries = await libraryProvider.getLibraries(library);
-  return libraries;
+  if (libraries) {
+    return libraries;
+  } else {
+    return null;
+  }
 };
 
 const updateLibrary = async (libraryId, updates) => {
